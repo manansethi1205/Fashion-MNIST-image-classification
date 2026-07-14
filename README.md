@@ -140,7 +140,6 @@ Class Predictions
 ```
 .
 ├── fmnist_prediction.ipynb
-├── fashion-mnist_train.csv
 └── README.md
 ```
 
