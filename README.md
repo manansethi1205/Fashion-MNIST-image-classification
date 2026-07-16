@@ -1,25 +1,29 @@
 # Fashion MNIST Image Classification using PyTorch
 
-A complete end-to-end Deep Learning project that classifies clothing images from the Fashion MNIST dataset using a fully connected neural network (MLP) implemented in PyTorch.
+An end-to-end Deep Learning project that classifies clothing images from the Fashion MNIST dataset using a Multi-Layer Perceptron (MLP) built from scratch in PyTorch.
 
-The project demonstrates the complete deep learning workflow including data preprocessing, custom dataset creation, model building, training, regularization, and evaluation.
+The project covers the complete deep learning workflow, from data preprocessing and custom dataset creation to model training, evaluation, visualization, and performance analysis.
 
 ---
 
 ## Project Overview
 
-The Fashion MNIST dataset contains grayscale images of clothing items belonging to 10 different classes.
+Fashion MNIST is a benchmark computer vision dataset consisting of grayscale images of clothing items across 10 categories.
 
 Each image:
-- Size: **28 × 28 pixels**
-- Grayscale
-- Flattened into **784 input features**
+- 28 × 28 grayscale pixels
+- Flattened into 784 input features
+- Classified into one of 10 clothing categories
 
-The objective is to correctly classify each image into one of the following categories:
+The objective is to build a neural network capable of accurately classifying unseen clothing images.
+
+---
+
+## Dataset Classes
 
 | Label | Class |
-|--------|-------|
-| 0 | T-shirt/Top |
+|--------|--------|
+| 0 | T-shirt / Top |
 | 1 | Trouser |
 | 2 | Pullover |
 | 3 | Dress |
@@ -34,17 +38,20 @@ The objective is to correctly classify each image into one of the following cate
 
 ## Features
 
-- PyTorch implementation from scratch
-- Custom Dataset class
-- DataLoader for mini-batch training
-- Multi-layer Perceptron (MLP)
+- Built completely using PyTorch
+- Custom Dataset and DataLoader pipeline
+- Multi-Layer Perceptron (MLP)
 - Batch Normalization
 - Dropout Regularization
-- SGD Optimizer
+- GPU (CUDA) Support
+- Mini-batch Gradient Descent
 - Cross Entropy Loss
-- GPU support (CUDA if available)
-- Model evaluation on both training and testing datasets
-- Dataset visualization using Matplotlib
+- Model Evaluation on Training & Test Sets
+- Training Loss Visualization
+- Accuracy Curves
+- Confusion Matrix
+- Classification Report
+- Prediction Visualization
 
 ---
 
@@ -52,17 +59,16 @@ The objective is to correctly classify each image into one of the following cate
 
 - Python
 - PyTorch
-- Pandas
 - NumPy
+- Pandas
 - Matplotlib
-- Scikit-Learn
+- Scikit-learn
 
 ---
 
 ## Model Architecture
 
-```
-Input (784)
+Input Layer (784)
 
 ↓
 
@@ -70,7 +76,7 @@ Linear (784 → 128)
 
 ↓
 
-BatchNorm
+Batch Normalization
 
 ↓
 
@@ -86,7 +92,7 @@ Linear (128 → 64)
 
 ↓
 
-BatchNorm
+Batch Normalization
 
 ↓
 
@@ -102,8 +108,7 @@ Linear (64 → 10)
 
 ↓
 
-Class Predictions
-```
+Softmax (handled internally by CrossEntropyLoss)
 
 ---
 
@@ -112,79 +117,129 @@ Class Predictions
 | Parameter | Value |
 |-----------|-------|
 | Optimizer | SGD |
-| Learning Rate | 0.1 |
+| Learning Rate | 0.01 |
 | Loss Function | CrossEntropyLoss |
-| Epochs | 100 |
 | Batch Size | 32 |
+| Epochs | 100 |
 | Weight Decay | 1e-4 |
+
+---
+
+## Training Results
+
+| Metric | Value |
+|---------|-------|
+| Training Accuracy | **93.3%** |
+| Test Accuracy | **89.34%** |
+
+The model converges smoothly during training and achieves strong generalization performance while maintaining a relatively small train-test accuracy gap.
+
+---
+
+## Visualizations
+
+The notebook includes the following evaluation plots:
+
+- Training Loss Curve
+- Training vs Test Accuracy Curve
+- Confusion Matrix
+- Classification Report
+- Correct Predictions
+- Incorrect Predictions
+
+---
+
+## Sample Results
+
+### Training Loss
+
+![Loss Curve](results/loss_curve.png)
+
+---
+
+### Training vs Test Accuracy
+
+![Accuracy Curve](results/accuracy_curve.png)
+
+---
+
+### Confusion Matrix
+
+![Confusion Matrix](results/confusion_matrix.png)
 
 ---
 
 ## Project Workflow
 
 1. Load Fashion MNIST dataset
-2. Visualize sample images
-3. Normalize pixel values
-4. Split into train and test sets
-5. Create custom PyTorch Dataset
-6. Create DataLoaders
-7. Build MLP model
-8. Train using mini-batch gradient descent
-9. Evaluate model accuracy
-10. Compare train and test performance
+2. Data preprocessing and normalization
+3. Create custom Dataset class
+4. Build DataLoaders
+5. Design MLP architecture
+6. Train the neural network
+7. Evaluate model performance
+8. Generate visualizations
+9. Analyze prediction errors
+
+---
+
+## Concepts Demonstrated
+
+- Artificial Neural Networks
+- Forward Propagation
+- Backpropagation
+- Mini-batch Gradient Descent
+- Batch Normalization
+- Dropout Regularization
+- Cross Entropy Loss
+- GPU Training using CUDA
+- Model Evaluation
+- Confusion Matrix Analysis
+- Classification Metrics
+- Data Visualization
+
+---
+
+## Future Improvements
+
+- Implement Convolutional Neural Networks (CNNs)
+- Hyperparameter tuning
+- Learning Rate Scheduling
+- Early Stopping
+- Model Checkpointing
+- Data Augmentation
+- TensorBoard Integration
+- Transfer Learning on larger image datasets
+
+---
+
+## Learning Outcomes
+
+This project helped me gain practical experience with:
+
+- Building neural networks from scratch using PyTorch
+- Creating efficient data pipelines with Dataset and DataLoader
+- Implementing regularization techniques
+- Training models on GPU
+- Evaluating classification models using multiple metrics
+- Visualizing model performance
+- Interpreting confusion matrices and prediction errors
 
 ---
 
 ## Repository Structure
 
 ```
-.
-├── fmnist_prediction.ipynb
-└── README.md
+fashion-mnist-pytorch-classification/
+│
+├── data/
+├── notebook/
+├── results/
+├── models/
+├── README.md
+├── requirements.txt
+└── LICENSE
 ```
-
----
-
-## Concepts Demonstrated
-
-- Neural Networks
-- Forward Propagation
-- Backpropagation
-- Mini-batch Gradient Descent
-- Batch Normalization
-- Dropout
-- Cross Entropy Loss
-- GPU Training
-- Data Preprocessing
-- PyTorch Dataset API
-- DataLoader Pipeline
-- Model Evaluation
-
----
-
-## Future Improvements
-
-- Replace MLP with a Convolutional Neural Network (CNN)
-- Add learning rate scheduling
-- Implement Early Stopping
-- Save and load trained model checkpoints
-- Plot training and validation loss curves
-- Add confusion matrix and classification report
-- Hyperparameter tuning
-
----
-
-## Learning Outcomes
-
-Through this project, I gained hands-on experience with:
-
-- Building neural networks using PyTorch
-- Creating custom datasets
-- Efficient batch loading using DataLoaders
-- Implementing regularization techniques
-- Training deep learning models on GPU
-- Evaluating classification models
-- Structuring an end-to-end deep learning pipeline
 
 ---
 
