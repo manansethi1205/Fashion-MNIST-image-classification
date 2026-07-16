@@ -232,13 +232,9 @@ This project helped me gain practical experience with:
 ```
 fashion-mnist-pytorch-classification/
 │
-├── data/
-├── notebook/
+├── fmist_prediction.ipynb
 ├── results/
-├── models/
 ├── README.md
-├── requirements.txt
-└── LICENSE
 ```
 
 ---
